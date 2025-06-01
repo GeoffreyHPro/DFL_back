@@ -1,10 +1,10 @@
 package com.example.demo.service;
 
+import com.example.demo.error.ResourceNotFoundException;
 import com.example.demo.model.User;
 import com.example.demo.payload.EmailPasswordRequest;
 import com.example.demo.reponses.TokenResponse;
 import com.example.demo.repository.userRepository.UserRepository;
-import com.example.demo.repository.userRepository.UserRepositoryImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,21 +15,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService implements UserDetailsService {
   @Autowired
-  private UserRepository ourUserRepo;
-  @Autowired
-  private UserRepositoryImpl customUserRepository;
+  private UserRepository userRepository;
 
   @Autowired
   private JWTUtils jwtUtils;
 
-  public void save(User user) throws Exception {
-    User userGet = null;
-    userGet = (User) loadUserByUsername(user.getUsername());
-    if (userGet == null) {
-      customUserRepository.saveUser(user);
-    } else {
-      throw new Exception();
-    }
+  public User getUser(int userId) {
+    return userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException(null));
+  }
+
+  public User save(User user){
+    userRepository.findByEmail(user.getUsername())
+        .ifPresent(existingUser -> {
+            throw new IllegalArgumentException("Email déjà utilisé");
+        });
+
+    return userRepository.save(user);
   }
 
   public TokenResponse getTokenResponse(EmailPasswordRequest content) {
@@ -40,6 +41,6 @@ public class UserService implements UserDetailsService {
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    return ourUserRepo.findByEmail(username);
+    return userRepository.findByEmail(username).orElseThrow( () -> new ResourceNotFoundException(null));
   }
 }

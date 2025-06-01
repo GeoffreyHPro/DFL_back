@@ -47,21 +47,9 @@ public class AuthController {
 
     @Operation(summary = "Create new user", description = "Create new user with unique email and a password")
     @PostMapping(path = "/signUp")
-    public ResponseEntity get(@RequestBody EmailPasswordRequest content) {
-
-        if (content.getEmail().isEmpty()) {
-            return ResponseEntity.status(300).body("please give an email");
-        }
-        if (content.getPassword().isEmpty()) {
-            return ResponseEntity.status(300).body("please give a password");
-        }
-        try {
-            userService.save(new User(content.getEmail(), passwordEncoder.encode(content.getPassword())));
-            return ResponseEntity.status(200).body(new MessagePayload("Your account is created"));
-        } catch (Exception e) {
-            return ResponseEntity.status(300).body(new MessagePayload("This account already exist"));
-        }
-
+    public ResponseEntity<MessagePayload> get(@RequestBody EmailPasswordRequest content) {
+        userService.save(new User(content.getEmail(), passwordEncoder.encode(content.getPassword())));
+        return ResponseEntity.status(201).body(new MessagePayload("user created"));
     }
 
 }

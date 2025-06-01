@@ -5,23 +5,19 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import com.example.demo.model.User;
-import com.example.demo.service.UserService;
+import com.example.demo.repository.userRepository.UserRepository;
 
 @Component
 public class InitConfig implements CommandLineRunner {
 
-    private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public InitConfig(UserService userService) {
-        this.userService = userService;
-    }
-
     @Override
     public void run(String... args) throws Exception {
-        userService.save(new User("admin@admin.com", passwordEncoder.encode("password")));
+        userRepository.save(new User("admin@admin.com", passwordEncoder.encode("password")));
     }
-
 }

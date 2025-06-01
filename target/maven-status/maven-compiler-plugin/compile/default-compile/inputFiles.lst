@@ -1,4 +1,3 @@
-C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\repository\foodRepository\CustomFoodRepository.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\controller\AuthController.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\service\UserService.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\payload\UserInformationsResponse.java
@@ -8,17 +7,13 @@ C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\reponses\To
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\DemoApplication.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\payload\UpdatePassword.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\service\JWTUtils.java
-C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\model\FoodBatch.java
+C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\error\GlobalExceptionHandler.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\reponses\UserResponse.java
-C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\repository\userRepository\CustomUserRepository.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\error\ResourceNotFoundException.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\configuration\InitConfig.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\model\User.java
-C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\repository\userRepository\UserRepositoryImpl.java
-C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\model\Food.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\configuration\SecurityConfig.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\reponses\payload\MessagePayload.java
-C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\repository\foodRepository\FoodRepositoryImpl.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\configuration\JWTAuthFilter.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\controller\UserController.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\repository\userRepository\UserRepository.java
