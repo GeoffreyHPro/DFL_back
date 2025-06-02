@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Player;
 import com.example.demo.reponses.payload.NewPlayer;
-import com.example.demo.service.RandomService;
+import com.example.demo.service.PlayerService;
 
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -18,12 +18,11 @@ import io.swagger.v3.oas.annotations.Operation;
 public class PlayersController {
 
     @Autowired
-    RandomService randomService;
+    PlayerService playerService;
 
     @Operation(summary = "Create new player", description = "Create new user with unique email and a password")
     @PostMapping()
     public ResponseEntity<Player> createNewPlayer(@RequestBody NewPlayer levelPlayer) {
-
-        return ResponseEntity.status(200).body(randomService.generatePlayer(levelPlayer.getLevel(), 9));
+        return ResponseEntity.status(200).body(playerService.save(levelPlayer.getLevel()));
     }
 }

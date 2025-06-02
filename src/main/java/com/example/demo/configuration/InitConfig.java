@@ -5,7 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import com.example.demo.model.User;
-import com.example.demo.repository.userRepository.UserRepository;
+import com.example.demo.repository.UserRepository;
 
 @Component
 public class InitConfig implements CommandLineRunner {

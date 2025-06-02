@@ -4,7 +4,7 @@ import com.example.demo.error.ResourceNotFoundException;
 import com.example.demo.model.User;
 import com.example.demo.payload.EmailPasswordRequest;
 import com.example.demo.reponses.TokenResponse;
-import com.example.demo.repository.userRepository.UserRepository;
+import com.example.demo.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

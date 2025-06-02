@@ -43,13 +43,13 @@ public class RandomService {
         int[] stats = new int[statsCount];
 
         if (levelPlayer.equals(LevelPlayerEnum.BRONZE)) {
-            stats = generatePlayerStats(9, 10);
+            stats = generatePlayerStats(statsCount, 10);
         } else if (levelPlayer.equals(LevelPlayerEnum.SILVER)) {
-            stats = generatePlayerStats(9, 12);
+            stats = generatePlayerStats(statsCount, 12);
         } else if (levelPlayer.equals(LevelPlayerEnum.OR)) {
-            stats = generatePlayerStats(9, 15);
+            stats = generatePlayerStats(statsCount, 15);
         } else {
-            stats = generatePlayerStats(9, 18);
+            stats = generatePlayerStats(statsCount, 18);
         }
 
         int sum = Arrays.stream(stats).sum();
