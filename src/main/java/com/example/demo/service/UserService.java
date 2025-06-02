@@ -21,13 +21,13 @@ public class UserService implements UserDetailsService {
   private JWTUtils jwtUtils;
 
   public User getUser(int userId) {
-    return userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException(null));
+    return userRepository.findById(userId).orElseThrow(ResourceNotFoundException::new);
   }
 
-  public User save(User user){
+  public User save(User user) {
     userRepository.findByEmail(user.getUsername())
         .ifPresent(existingUser -> {
-            throw new IllegalArgumentException("Email déjà utilisé");
+          throw new IllegalArgumentException("Email déjà utilisé");
         });
 
     return userRepository.save(user);
@@ -41,6 +41,6 @@ public class UserService implements UserDetailsService {
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    return userRepository.findByEmail(username).orElseThrow( () -> new ResourceNotFoundException(null));
+    return userRepository.findByEmail(username).orElseThrow(ResourceNotFoundException::new);
   }
 }
