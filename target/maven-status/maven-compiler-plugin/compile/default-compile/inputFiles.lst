@@ -9,6 +9,7 @@ C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\error\Globa
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\repository\UserRepository.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\reponses\UserResponse.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\controller\PlayersController.java
+C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\converter\PlayerConverter.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\reponses\payload\MessagePayload.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\controller\AuthController.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\payload\EmailPasswordRequest.java
@@ -18,7 +19,7 @@ C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\service\JWT
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\repository\PlayerRepository.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\error\ResourceNotFoundException.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\model\LevelPlayerEnum.java
-C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\configuration\InitConfig.java
+C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\dto\PlayerDto.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\model\User.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\model\Player.java
 C:\Users\geoff\Documents\git\DFL_back\src\main\java\com\example\demo\configuration\SecurityConfig.java

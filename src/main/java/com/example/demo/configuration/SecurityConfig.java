@@ -38,7 +38,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers(mvcMatcherBuilder.pattern("/auth/**")).permitAll()
-                        .requestMatchers(mvcMatcherBuilder.pattern("/players/**")).permitAll()
+                        .requestMatchers(mvcMatcherBuilder.pattern("/players/**")).hasAnyAuthority("USER")
                         .requestMatchers(mvcMatcherBuilder.pattern("/swagger-ui/**")).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern("/v3/**")).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern("/h2-console/**")).permitAll()

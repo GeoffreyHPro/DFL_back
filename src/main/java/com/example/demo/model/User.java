@@ -2,10 +2,9 @@ package com.example.demo.model;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -18,17 +17,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private String id;
     private String email;
     private String password;
     private String role;
 
     public User() {
-
+        this.id = UUID.randomUUID().toString();
     }
 
     public User(String email, String password) {
+        this.id = UUID.randomUUID().toString();
         this.email = email;
         this.password = password;
         this.role = "USER";
@@ -73,12 +72,12 @@ public class User implements UserDetails {
         return true;
     }
 
-    public void setId(int id){
-        this.id = id;    
+    public void updatePassword(String newPassword) {
+        this.password = newPassword;
     }
 
-    public void updatePassword(String newPassword){
-        this.password = newPassword;
+    public String getId() {
+        return id;
     }
 
 }

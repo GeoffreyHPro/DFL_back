@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.model.LevelPlayerEnum;
 import com.example.demo.model.Player;
+import com.example.demo.model.User;
 import com.github.javafaker.Faker;
 
 @Service
@@ -39,7 +40,7 @@ public class RandomService {
         return stats;
     }
 
-    public Player generatePlayer(LevelPlayerEnum levelPlayer, int statsCount) {
+    public Player generatePlayer(LevelPlayerEnum levelPlayer, int statsCount, User user) {
         int[] stats = new int[statsCount];
 
         if (levelPlayer.equals(LevelPlayerEnum.BRONZE)) {
@@ -55,16 +56,18 @@ public class RandomService {
         int sum = Arrays.stream(stats).sum();
 
         boolean isBronzeRight = levelPlayer.equals(LevelPlayerEnum.BRONZE) && sum <= 50;
-        boolean isSilverRight = levelPlayer.equals(LevelPlayerEnum.SILVER) && sum <= 80;
-        boolean isOrRight = levelPlayer.equals(LevelPlayerEnum.OR) && sum <= 100;
-        boolean isPlatinumRight = levelPlayer.equals(LevelPlayerEnum.PLATINUM) && sum <= 120;
+        boolean isSilverRight = levelPlayer.equals(LevelPlayerEnum.SILVER) && sum <= 80 && sum > 45;
+        boolean isOrRight = levelPlayer.equals(LevelPlayerEnum.OR) && sum <= 100 && sum > 75;
+        boolean isPlatinumRight = levelPlayer.equals(LevelPlayerEnum.PLATINUM) && sum <= 120 && sum > 95;
 
         if (isBronzeRight || isSilverRight || isOrRight || isPlatinumRight) {
-            return new Player(stats[0], stats[1], stats[2], stats[3],
+            Player newPlayer = new Player(levelPlayer,stats[0], stats[1], stats[2], stats[3],
                     stats[4], stats[5], stats[6], stats[7], stats[8],
                     generateFirstName(), generateLastName(), generateRandomCountry());
+            newPlayer.setUser(user);
+            return newPlayer;
         }
 
-        return generatePlayer(levelPlayer, statsCount);
+        return generatePlayer(levelPlayer, statsCount, user);
     }
 }

@@ -1,9 +1,12 @@
 package com.example.demo.model;
 
+import java.util.UUID;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,8 +24,7 @@ import lombok.Setter;
 public class Player {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private String id;
 
     private int finishing;
     private int shotPower;
@@ -38,9 +40,17 @@ public class Player {
     private String lastName;
     private String country;
 
-    public Player(int finishing, int shotPower, int longShot, int dribble, int passes,
+    @ManyToOne
+    User user;
+
+    @Enumerated(EnumType.STRING)
+    private LevelPlayerEnum levelPlayer;
+
+    public Player(LevelPlayerEnum levelPlayerEnum, int finishing, int shotPower, int longShot, int dribble, int passes,
             int interception, int defense, int goalKeeperReflexe, int goalKeeperDiving, String firstName,
             String lastName, String country) {
+        this.id = UUID.randomUUID().toString();
+        this.levelPlayer = levelPlayerEnum;
         this.finishing = finishing;
         this.shotPower = shotPower;
         this.longShot = longShot;

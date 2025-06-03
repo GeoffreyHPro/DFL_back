@@ -7,9 +7,10 @@ import com.example.demo.reponses.TokenResponse;
 import com.example.demo.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,17 +21,18 @@ public class UserService implements UserDetailsService {
   @Autowired
   private JWTUtils jwtUtils;
 
-  public User getUser(int userId) {
+  public User getUser(String userId) {
     return userRepository.findById(userId).orElseThrow(ResourceNotFoundException::new);
   }
 
-  public User save(User user) {
-    userRepository.findByEmail(user.getUsername())
-        .ifPresent(existingUser -> {
-          throw new IllegalArgumentException("Email déjà utilisé");
-        });
-
-    return userRepository.save(user);
+  public void save(User user) throws Exception {
+    User userGet = null;
+    userGet = (User) loadUserByUsername(user.getUsername());
+    if (userGet == null) {
+      userRepository.save(user);
+    } else {
+      throw new Exception();
+    }
   }
 
   public TokenResponse getTokenResponse(EmailPasswordRequest content) {
@@ -39,8 +41,23 @@ public class UserService implements UserDetailsService {
     return new TokenResponse(jwt, user.getRole());
   }
 
+  public User getActiveUser() {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    if (authentication == null || !authentication.isAuthenticated()) {
+      System.out.println("rien");
+    }
+
+    Object principal = authentication.getPrincipal();
+
+    if (principal instanceof User) {
+      return (User) principal;
+    } else {
+      return null;
+    }
+  }
+
   @Override
-  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    return userRepository.findByEmail(username).orElseThrow(ResourceNotFoundException::new);
+  public UserDetails loadUserByUsername(String username) {
+    return (UserDetails) userRepository.findByEmail(username);
   }
 }

@@ -1,0 +1,33 @@
+package com.example.demo.converter;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.dto.PlayerDto;
+import com.example.demo.model.Player;
+
+@Service
+public class PlayerConverter {
+
+    public PlayerDto apply(Player player) {
+        if (player == null) {
+            return null;
+        }
+
+        return new PlayerDto(
+                player.getId(),
+                player.getLevelPlayer(),
+                player.getFinishing(),
+                player.getShotPower(),
+                player.getLongShot(),
+                player.getDribble(),
+                player.getPasses(),
+                player.getInterception(),
+                player.getDefense(),
+                player.getGoalKeeperReflexe(),
+                player.getGoalKeeperDiving(),
+                player.getFirstName(),
+                player.getLastName(),
+                player.getCountry(),
+                player.getUser().getId());
+    }
+}
