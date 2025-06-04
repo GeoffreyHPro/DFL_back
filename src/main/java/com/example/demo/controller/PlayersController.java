@@ -67,6 +67,15 @@ public class PlayersController {
     }
 
     @Operation(summary = "Get list of players own by active user", description = "")
+    @GetMapping("/full/{playerId}")
+    public ResponseEntity<PlayerDto> getPlayersByUserAndId(Authentication authentication,
+            @PathVariable String playerId) {
+        Player player = playerService.getPlayer(playerId, userService.getActiveUser().getId());
+        return ResponseEntity.status(200)
+                .body(playerConverter.apply(player));
+    }
+
+    @Operation(summary = "Get list of players own by active user", description = "")
     @GetMapping("/light")
     public ResponseEntity<List<PlayerLightDto>> getLightPlayersByUser(Authentication authentication) {
         List<Player> listPlayers = playerService.findPlayersByUserEmail(authentication.getName());

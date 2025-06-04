@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.PlayerDto;
 import com.example.demo.dto.PlayerLightDto;
+import com.example.demo.dto.PlayerStatsDto;
 import com.example.demo.model.Player;
 
 @Service
@@ -14,10 +15,7 @@ public class PlayerConverter {
             return null;
         }
 
-        return new PlayerDto(
-                player.getId(),
-                player.getLevelPlayer(),
-                player.getFinishing(),
+        PlayerStatsDto playerStatsDto = new PlayerStatsDto(player.getFinishing(),
                 player.getShotPower(),
                 player.getLongShot(),
                 player.getDribble(),
@@ -25,7 +23,12 @@ public class PlayerConverter {
                 player.getInterception(),
                 player.getDefense(),
                 player.getGoalKeeperReflexe(),
-                player.getGoalKeeperDiving(),
+                player.getGoalKeeperDiving());
+
+        return new PlayerDto(
+                player.getId(),
+                player.getLevelPlayer(),
+                playerStatsDto,
                 player.getFirstName(),
                 player.getLastName(),
                 player.getCountry(),
