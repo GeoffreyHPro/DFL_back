@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.converter.PlayerConverter;
 import com.example.demo.dto.PlayerDto;
+import com.example.demo.dto.PlayerLightDto;
 import com.example.demo.model.Player;
 import com.example.demo.reponses.payload.NewPlayer;
 import com.example.demo.service.PlayerService;
@@ -58,12 +59,19 @@ public class PlayersController {
     }
 
     @Operation(summary = "Get list of players own by active user", description = "")
-    @GetMapping()
+    @GetMapping("/full")
     public ResponseEntity<List<PlayerDto>> getPlayersByUser(Authentication authentication) {
         List<Player> listPlayers = playerService.findPlayersByUserEmail(authentication.getName());
-        System.out.println(authentication.getName());
         return ResponseEntity.status(200)
                 .body(listPlayers.stream().map(player -> playerConverter.apply(player)).toList());
+    }
+
+    @Operation(summary = "Get list of players own by active user", description = "")
+    @GetMapping("/light")
+    public ResponseEntity<List<PlayerLightDto>> getLightPlayersByUser(Authentication authentication) {
+        List<Player> listPlayers = playerService.findPlayersByUserEmail(authentication.getName());
+        return ResponseEntity.status(200)
+                .body(listPlayers.stream().map(player -> playerConverter.applyLight(player)).toList());
     }
 
     @Operation(summary = "Delete player", description = "")
@@ -71,6 +79,6 @@ public class PlayersController {
     public ResponseEntity<?> deletePlayer(Authentication authentication,
             @PathVariable String playerId) {
         playerService.deletePlayer(playerId, userService.getActiveUser());
-        return ResponseEntity.status(200).body("");
+        return ResponseEntity.status(200).build();
     }
 }
