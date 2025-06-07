@@ -26,6 +26,7 @@ public class Player {
     @Id
     private String id;
 
+    private int overall;
     private int finishing;
     private int shotPower;
     private int longShot;

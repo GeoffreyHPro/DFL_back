@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Random;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,8 @@ public class RandomService {
     }
 
     public String generateRandomCountry() {
-        return faker.address().country();
+        Locale locale = new Locale("", faker.address().countryCode());
+        return locale.getCountry();
     }
 
     public int generateNumber(int maxValue) {
@@ -65,6 +67,7 @@ public class RandomService {
                     stats[4], stats[5], stats[6], stats[7], stats[8],
                     generateFirstName(), generateLastName(), generateRandomCountry());
             newPlayer.setUser(user);
+            newPlayer.setOverall(sum);
             return newPlayer;
         }
 

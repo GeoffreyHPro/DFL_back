@@ -15,7 +15,8 @@ public class PlayerConverter {
             return null;
         }
 
-        PlayerStatsDto playerStatsDto = new PlayerStatsDto(player.getFinishing(),
+        PlayerStatsDto playerStatsDto = new PlayerStatsDto(
+                player.getFinishing(),
                 player.getShotPower(),
                 player.getLongShot(),
                 player.getDribble(),
@@ -45,6 +46,7 @@ public class PlayerConverter {
                 player.getLevelPlayer(),
                 player.getFirstName(),
                 player.getLastName(),
-                player.getCountry());
+                player.getCountry(),
+                player.getOverall());
     }
 }
